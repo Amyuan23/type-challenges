@@ -19,8 +19,9 @@
 */
 
 /* _____________ Your Code Here _____________ */
+// 联合类型用条件运算符时是会被展开的
 
-type MyExclude<T, U> = any
+type MyExclude<T, U> = T extends U ? never : T
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
