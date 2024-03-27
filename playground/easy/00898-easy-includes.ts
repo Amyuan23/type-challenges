@@ -18,7 +18,10 @@
 
 /* _____________ Your Code Here _____________ */
 
-type Includes<T extends readonly any[], U> = any
+// type Includes<T extends readonly any[], U> = { [P in T[number]]: true }[U] extends true ? true : false
+// 遍历递归即视感
+type Includes<T extends readonly any[], U> = T extends [infer First, ...infer Last] ?
+  Equal<U, First> extends true ? true : Includes<Last, U> : false
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
