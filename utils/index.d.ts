@@ -4,6 +4,8 @@ export type ExpectFalse<T extends false> = T
 export type IsTrue<T extends true> = T
 export type IsFalse<T extends false> = T
 
+// 如果X和Y不想等，总会有某个T可以被一方约束而不被另一方约束的情况
+
 export type Equal<X, Y> =
   (<T>() => T extends X ? 1 : 2) extends
   (<T>() => T extends Y ? 1 : 2) ? true : false

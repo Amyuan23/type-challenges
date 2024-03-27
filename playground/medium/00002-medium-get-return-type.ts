@@ -25,7 +25,7 @@
 
 /* _____________ Your Code Here _____________ */
 
-type MyReturnType<T> = any
+type MyReturnType<T> = T extends (...args: any) => infer P ? P : never
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
@@ -43,7 +43,7 @@ type cases = [
 type ComplexObject = {
   a: [12, 'foo']
   bar: 'hello'
-  prev(): number
+  prev: () => number
 }
 
 const fn = (v: boolean) => v ? 1 : 2
