@@ -17,8 +17,10 @@
 */
 
 /* _____________ Your Code Here _____________ */
+// ts 运算 就是要充分利用ts的推测能力
 
-type TrimLeft<S extends string> = any
+type Space = ' ' | '\n' | '\t'
+type TrimLeft<S extends string> = S extends `${Space}${infer R}` ? TrimLeft<R> : S
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
