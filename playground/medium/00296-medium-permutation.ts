@@ -15,8 +15,14 @@
 */
 
 /* _____________ Your Code Here _____________ */
+// 真难
 
-type Permutation<T> = any
+type Permutation<All, Item = All> =
+  [All] extends [never]
+    ? []
+    : Item extends All
+      ? [Item, ...Permutation<Exclude<All, Item>>]
+      : never
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
