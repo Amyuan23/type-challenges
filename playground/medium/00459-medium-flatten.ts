@@ -18,7 +18,9 @@
 
 /* _____________ Your Code Here _____________ */
 
-type Flatten = any
+type Flatten<T extends unknown[], K extends unknown[] = []> = T extends [infer U, ...infer V] ?
+  U extends any[] ? Flatten<[...U, ...V], K> : Flatten<[...V], [...K, U]>
+  : K
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
