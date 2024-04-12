@@ -1,33 +1,17 @@
-// 深究一下联合类型会被extends 这件事
+// 深究一下联合类型会被extends分发 这件事
 
-type A = { name: string }
+type A = 'x'
 
-type B = { name: string, age: number }
-
-type E = { sex: string }
+type B = 'y'
 
 type C = A | B
 
-// type D = keyof C
+type X = C extends 'x' ? 'yes' : 'no'
 
-type F = A | E
+type Y = 'x' | 'y' extends 'x' ? 'yes' : 'no'
 
-type X = C extends { name: string, age: number } ? true : false
+type Z<T> = T extends 'x' ? 'yes' : 'no'
 
-type Y = F extends A ? 'yes' : 'no'
+type U = Z<C>
 
-type Z = 'x' | 'y' extends 'x' ? 'yes' : 'no'
-
-type V = string | number
-
-type U<T> = T extends string ? 'yes' : 'no'
-
-type W = U<V>
-
-type G<T> = T extends never ? 'yes' : 'no'
-
-type H = G<string | never>
-
-type L<T> = T extends 'x' ? 'yes' : 'no'
-
-type M = L<'x' | 'y'>
+export {}
